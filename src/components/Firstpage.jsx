@@ -8,21 +8,21 @@ export const First = () => {
     <div className="first flex justify-around items-center ">
       {/* Left Section: Welcome Content */}
       <div className="welcomming">
-        <img src={logoo} alt="Logo" className=" ml-[30px] " />
+        <img src={logoo} alt="Logo" className="  w-[20%] " />
         <div className="h2">
-          <h2 className="font-bold text-[65px] mt-2">Easily</h2>
-          <h2 className="font-bold text-[65px] mt-2">Manage Your</h2>
+          <h2 className="font-bold lg:text-[50px] sm:text-[50px] mt-2">Easily</h2>
+          <h2 className="font-bold lg:text-[50px] sm:text-[50px]  mt-2">Manage Your</h2>
         </div>
         <div className="hh2">
           <h2
-            className="font-bold text-[65px] mt-2 bg-gradient-to-r from-[#5A3497] via-[#9071D9] 
+            className="font-bold lg:text-[55px] sm:text-[50px]  mt-2 bg-gradient-to-r from-[#5A3497] via-[#9071D9] 
             to-[#C8EAF8] bg-clip-text text-transparent"
           >
             Daily Tasks
           </h2>
         </div>
         {/* Description Text */}
-        <p className="text-[17px] mt-4 leading-relaxed">
+        <p className="text-[10px] lg:text-[16px] sm:text-[12px] sm:w-[40vw] sm:-m mt-4 leading-relaxed">
           Take control of your day with ease! Our to-do list platform helps you
           organize tasks,
           <br />
@@ -40,7 +40,7 @@ export const First = () => {
         <div className="getstarted mt-7">
           <Link
             to="/signin"
-            className="btn btn-primary w-[35%] py-3 bg-[#9C74FA] text-white 
+            className="btn btn-primary w-[35%] py-3 bg-dark-purple text-white 
              hover:bg-[#5A3497] transition border-[#9C74FA]"
           >
             Get Started

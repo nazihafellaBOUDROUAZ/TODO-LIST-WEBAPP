@@ -39,12 +39,12 @@ function Settings() {
     
       return (
         <Side>
-        <div className="container ">
+        <div className="container h-screen flex flex-col">
           <div className="">
             <div className="card-header font-bold  "style={{ color: '#9C74FA',fontSize:'28px'  }}>
               <h4 className="mb-4 ">Profile Settings</h4>
             </div>
-            <div className="card-body flex  space-x-32">
+            <div className="card-body flex flex-col overflow-y-scroll  w-full max-w-4xl h-[100vh] max-h-[100vh] lg:flex-row lg:justify-between  ">
               <form onSubmit={handleSubmit}>
                 {/* Avatar Section */}
                 <div className="d-flex align-items-center mb-3">
@@ -85,6 +85,8 @@ function Settings() {
     
                 {/* Password */}
                 <div className="mb-4 d-flex align-items-center">
+                  <div>
+                  <label className="form-label">Email</label>                 
                   <input
                     type="password"
                     className="form-control"
@@ -93,6 +95,7 @@ function Settings() {
                     value={formData.password}
                     onChange={handleChange}
                   />
+                  </div>
                   <button type="button" className="btn btn-outline-secondary ms-32">
                     Change
                   </button>
@@ -112,7 +115,7 @@ function Settings() {
     
               </form>
               <form>
-                <div className='left '>
+                <div className=''>
 
                   {/* Date of Birth */}
                 <div className="mb-4 mt-20">
@@ -160,8 +163,8 @@ function Settings() {
                 </div>
     
                 {/* Save Button */}
-                <div className="d-grid mt-36">
-                  <button type="submit" className="btn bg-[#9C74FA] text-white rounded-lg shadow-md ">
+                <div className="d-grid mt-12">
+                  <button type="submit" className="text-white rounded-lg shadow-md " style={{ backgroundColor: '#9C74FA',fontSize:'20px'  }}>
                     Save
                   </button>
                 </div>

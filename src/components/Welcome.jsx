@@ -96,78 +96,105 @@ const Calendar = () => {
 
 export default Calendar;*/
 
-import React from 'react'
-import Side from './Side.jsx'
 
+import React from 'react';
+import Side from './Side.jsx';
+import  {Link} from "react-router-dom";
+import { Pie } from 'react-chartjs-2';
+import dashboard from "../assets/dashboard.png";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
-export default function welcome() {
-  // Task data for different progress statuses
-  const tasks = [
-    { title: "TO DO", progress: 90, due: "3 days left" },
-    { title: "IN PROGRESS", progress: 30, due: "25 days left" },
-    { title: "DONE", progress: 75, due: "7 days left" },
-    { title: "NEED TO REVIEW", progress: 90, due: "3 days left" },
-  ];
+// Register the necessary chart.js components
+ChartJS.register(ArcElement, Tooltip, Legend);
 
-  // Function to calculate progress percentage dynamically
-  const calculateProgress = (progress) => {
-    return `${progress}%`;
+// Function to calculate task percentages
+const calculatePercentages = (tasks) => {
+  if (!Array.isArray(tasks)) {
+    return { todo: 0, doing: 0, done: 0, review: 0 }; // Default to 0% if tasks is not an array
+  }
+
+  const totalTasks = tasks.length;
+
+  if (totalTasks === 0) {
+    return { todo: 0, doing: 0, done: 0, review: 0 }; // Return 0% if there are no tasks
+  }
+
+  const counts = {
+    todo: tasks.filter((task) => task.status === "todo").length,
+    doing: tasks.filter((task) => task.status === "doing").length,
+    done: tasks.filter((task) => task.status === "done").length,
+    review: tasks.filter((task) => task.status === "review").length,
+  };
+
+  return {
+    todo: (counts.todo / totalTasks) * 100,
+    doing: (counts.doing / totalTasks) * 100,
+    done: (counts.done / totalTasks) * 100,
+    review: (counts.review / totalTasks) * 100,
+  };
+};
+
+const Welcome = ({ tasks }) => {
+  const percentages = calculatePercentages(tasks);
+
+  const chartData = {
+    labels: ['To Do', 'In Progress', 'Done', 'Need Review'],
+    datasets: [
+      {
+        data: [
+          percentages.todo,
+          percentages.doing,
+          percentages.done,
+          percentages.review,
+        ],
+        backgroundColor: ['#FF0000', '#0073e6', '#00cc00', '#E7D800'], // Different colors for each category
+      },
+    ],
   };
 
   return (
     <Side>
-    <div className="p-8 bg-gray-100 min-h-screen text-gray-700">
-      {/* Header */}
-      <header className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold text-purple-700">DASHBOARD</h1>
-        <div className="bg-purple-100 p-4 rounded-md shadow">
-          <p className="font-medium">PROFILE</p>
-        </div>
-      </header>
-
-      {/* Today Task Section */}
-      <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-2">Today Task</h2>
-        <p className="text-sm text-gray-500">
-          Check your daily tasks and schedules
-        </p>
-        <button className="mt-2 px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600">
-          Today's Schedule
-        </button>
-      </section>
-
-      {/* Task Progress Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {tasks.map((task, index) => (
-          <div
-            key={index}
-            className="bg-white p-4 rounded-md shadow-md hover:shadow-lg transition-shadow"
-          >
-            <h3 className="text-lg font-bold text-gray-700 mb-2">
-              {task.title}
-            </h3>
-            <div className="relative h-2 w-full bg-gray-200 rounded-full mb-4">
-              <div
-                className="absolute h-full bg-purple-500 rounded-full"
-                style={{ width: calculateProgress(task.progress) }}
-              ></div>
-            </div>
-            <p className="text-sm text-gray-500">Progress: {task.progress}%</p>
-            <p className="text-xs text-gray-500 mt-1">{task.due}</p>
+      <div className="p-8 min-h-screen  text-gray-700 ">
+        <div className='d-flex justify-evenly -mt-6 bg-gray-50 rounded-lg mb-24'>
+          <div>
+            <h1 className='text-3xl font-bold text-[#5A3497] -ml-12 mt-24 '>YOUR Tasks</h1>
+            <p className='text-xl  text-gray-400 font-bold mt-2 -ml-12 mb-12 '>check your project list and scheduales</p>
+            <Link
+              to="/ProjectsList" className="btn bg-[#9C74FA] text-[#5A3497] font-bold rounded-lg shadow-md w-full mt-3 -ml-5 ">
+                    Project List
+                    </Link>
           </div>
-        ))}
-      </div>
+          <div>
+          <img src={dashboard} alt="" />
+          </div>
+        </div>
 
-      {/* Task Progress Chart Placeholder */}
-      <section className="mt-10">
-        <h2 className="text-xl font-semibold mb-4">Your Interest</h2>
-        <div className="w-48 h-48 mx-auto rounded-full border-4 border-gray-300 relative">
-          <p className="absolute inset-0 flex items-center justify-center text-purple-500 font-bold text-xl">
-            Chart
+        
+        
+        <h2 className="text-3xl font-bold text-purple-600 mb-10 -mt-8 -ml-5"style={{ color: '#9C74FA',fontSize:'28px'  }}>Dashboard</h2>
+        <div className="grid grid-cols-2 gap-4 mb-8">
+          <p className="bg-gray-100 p-4 rounded-lg shadow-md text-center font-bold text-gray-800 text-[#FF0000]">
+            To Do: <span className="text-purple-600">{percentages.todo.toFixed(2)}%</span>
+          </p>
+          <p className="bg-gray-100 p-4 rounded-lg shadow-md text-center font-bold text-gray-800 text-[#0073e6]">
+            In Progress: <span className="text-purple-600">{percentages.doing.toFixed(2)}%</span>
+          </p>
+          <p className="bg-gray-100 p-4 rounded-lg shadow-md text-center font-bold text-gray-800 text-[#00cc00]	">
+            Done: <span className="text-purple-600">{percentages.done.toFixed(2)}%</span>
+          </p>
+          <p className="bg-gray-100 p-4 rounded-lg shadow-md text-center font-bold text-gray-800 text-[#E7D800]	">
+            Need Review: <span className="text-purple-600">{percentages.review.toFixed(2)}%</span>
           </p>
         </div>
-      </section>
-    </div>
+        
+        <div className="bg-white p-8 rounded-lg shadow-md flex justify-center">
+          <div className="w-1/3">
+            <Pie data={chartData} />
+          </div>
+        </div>
+      </div>
     </Side>
   );
-}
+};
+
+export default Welcome;

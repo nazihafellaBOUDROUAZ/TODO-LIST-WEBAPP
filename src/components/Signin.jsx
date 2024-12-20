@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 
 export const Signin = () => {
   return (
-    <div className="signin flex justify-evenly bg-white">
+    <div className="signin flex justify-around bg-white">
       {/* Left Section: Image & Logo */}
-      <div className="image flex flex-col">
-        <div className="logo  -ml-[14%]">
+      <div className="image flex flex-col hidden md:flex">
+        <div className="logo w-[20%]">
           <img src={logoo} alt="Logo" />
         </div>
-        <div className="myimage -ml-10">
+        <div className="myimage -ml-[4.6%]  hidden md:flex">
           <img src={myimage} alt="" />
         </div>
       </div>
@@ -62,7 +62,7 @@ export const Signin = () => {
             {/* Create Account Button */}
             <Link
               to="/Welcome"
-              className="btn mt-6 py-2 px-4 bg-[#9C74FA] text-white text-center rounded hover:bg-[#5A3497]"
+              className="btn mt-6 py-2 px-4 text-white text-center rounded hover:bg-[#5A3497]"style={{ background: '#9C74FA'}}
             >
               Create Account
             </Link>

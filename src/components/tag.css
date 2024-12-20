@@ -1,0 +1,17 @@
+.tag{
+    font-size: 14px;
+    font-weight: 500;
+    background-color:lightgray;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 2px 10px;
+    margin-right: 10px;
+    margin-top:10px;
+    cursor: pointer;
+}
+@media screen and (max-width:1000px) {
+    .tag{
+        font-size: 10px;
+    }
+    
+}
