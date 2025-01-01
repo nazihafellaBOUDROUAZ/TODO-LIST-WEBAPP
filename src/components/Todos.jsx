@@ -61,9 +61,9 @@ const Todos=({todo,todos,setTodos,id})=> {
         return (
     
             <div className='todo-li'>
-                <li className={`li-list ${todo.completed ?' ': ''}`}>
-                    <input className='bg-[#9C74FA] p-2 mr-2 rounded' value={todo.name} onChange={onchangedit}/>
-                    <button className='button-complete bg-green-400 rounded-md mr-2 p-2 mt-4'>
+                <li className={`li-list ${todo.completed ?'line-through': ''}`}>
+                    <span className='bg-[#9C74FA] p-2 mr-2 rounded'>{todo.name}</span>
+                    <button className='button-complete bg-green-400 rounded-md mr-2 p-2 mt-4' onClick={onComplete}>
                         <span>Complete</span>
                     </button>
                     <button className='bg-blue-400 rounded-md mr-2 p-2 mt-4 ' onClick={onEdit}>

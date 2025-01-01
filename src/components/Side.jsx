@@ -6,6 +6,7 @@ import home from "../assets/home.png";
 import Calendar from "../assets/Calendar.png";
 import todo from "../assets/todo.png";
 import check from "../assets/check.png";
+import daily from "../assets/daily.png"
 import notification from "../assets/notification.png";
 import Setting from "../assets/Setting.png";
 import support from "../assets/support.png";
@@ -20,7 +21,7 @@ export default function Sidebar({ children }) {
     { title: "Calendar", src: Calendar, path: "/calendar" },
     { title: "Projects List", src: todo, path: "/ProjectsList" },
     { title: "Todo List", src: check, path: "/Todo" },
-    { title: "Daily Notes", src: check, path: "/DailyNotes" },
+    { title: "Daily Notes", src: daily, path: "/DailyNotes" },
     { title: "Notifications", src: notification, gap: true, path: "/notifications" },
     { title: "Settings", src: Setting, path: "/settings" },
     { title: "Support", src: support, path: "/support" },
