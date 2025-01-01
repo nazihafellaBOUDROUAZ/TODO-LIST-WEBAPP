@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom"; // 🔥 Added useLocation to detect current page
+import React, { useState, useMemo } from "react";
+import { Link, useLocation } from "react-router-dom";
 import img from "../assets/img.png";
-import logo from "../assets/logo2.png";
+import logo from "../assets/logoo.png";
 import home from "../assets/home.png";
 import Calendar from "../assets/Calendar.png";
 import todo from "../assets/todo.png";
-import daily from "../assets/daily.png"
 import check from "../assets/check.png";
+import daily from "../assets/daily.png"
 import notification from "../assets/notification.png";
 import Setting from "../assets/Setting.png";
 import support from "../assets/support.png";
@@ -14,19 +14,19 @@ import report from "../assets/report.png";
 
 export default function Sidebar({ children }) {
   const [open, setOpen] = useState(true);
-  const location = useLocation(); // 🔥 Detect the current URL path (ex: /dashboard, /calendar, etc.)
+  const location = useLocation();
 
-  const Menus = [
-    { title: "Dashboard", src: home, path: "/Welcome" },
+  const Menus = useMemo(() => [
+    { title: "Dashboard", src: home, path: "/welcome" },
     { title: "Calendar", src: Calendar, path: "/calendar" },
-    { title: "Projects List", src: todo, path: "/Projects" },
+    { title: "Projects List", src: todo, path: "/ProjectsList" },
     { title: "Todo List", src: check, path: "/Todo" },
-    { title: "Daily Notes", src: daily, path: "/daily-notes" },
-    { title: "Notifications", src: notification, path: "/notifications", gap: true },
+    { title: "Daily Notes", src: daily, path: "/DailyNotes" },
+    { title: "Notifications", src: notification, gap: true, path: "/notifications" },
     { title: "Settings", src: Setting, path: "/settings" },
     { title: "Support", src: support, path: "/support" },
-    { title: "Report", src: report, path: "/report" },
-  ];
+    { title: "Report", src: report, path: "/repport" },
+  ], []);
 
   return (
     <div className="flex">
